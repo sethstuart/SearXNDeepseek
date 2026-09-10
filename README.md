@@ -149,6 +149,13 @@ dsh --profile headless "Use web_search to look up the latest SearXNG release not
 docker ps   # container should be gone after the idle window
 ```
 
+## Community
+
+This project is listed in the [DSH plugin category](https://github.com/deepseek-ai/deepseek-harness/discussions/2004)
+(unofficial, community-maintained). A ready-to-paste post — title and body following that discussion's rules — lives at
+[`docs/plugin-category-post.md`](./docs/plugin-category-post.md), with the screenshot source in
+[`docs/screenshot-demo.html`](./docs/screenshot-demo.html).
+
 ## License
 
 MIT — see [LICENSE](./LICENSE).
