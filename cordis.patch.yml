@@ -1,0 +1,23 @@
+# Bundle patch for @deepseek-ai/dsh-web-search-searxng-docker.
+#
+# 1) Point the web seam at this provider (overrides dsh-base's default).
+# 2) Mount the plugin itself exactly once in profiles that consume this bundle.
+#    Environment variables override each value; see README.md for the full list.
+
+- id: web
+  config:
+    searchProvider: searxng-docker
+
+- insert:
+    - id: web-search-searxng-docker
+      name: '@deepseek-ai/dsh-web-search-searxng-docker'
+      config:
+        image: !!js process.env.SEARXNG_DOCKER_IMAGE ?? 'searxng/searxng'
+        port: !!js Number(process.env.SEARXNG_DOCKER_PORT ?? 8091)
+        containerName: !!js process.env.SEARXNG_DOCKER_NAME ?? 'dsh-searxng-docker'
+        maxResults: !!js Number(process.env.SEARXNG_MAX_RESULTS ?? 10)
+        language: !!js process.env.SEARXNG_LANGUAGE ?? 'all'
+        idleTimeoutMs: !!js Number(process.env.SEARXNG_DOCKER_IDLE_MS ?? 60000)
+        startTimeoutMs: !!js Number(process.env.SEARXNG_DOCKER_START_TIMEOUT_MS ?? 300000)
+        readyTimeoutMs: !!js Number(process.env.SEARXNG_DOCKER_READY_TIMEOUT_MS ?? 90000)
+        searchTimeoutMs: !!js Number(process.env.SEARXNG_DOCKER_SEARCH_TIMEOUT_MS ?? 60000)
